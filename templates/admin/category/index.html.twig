@@ -1,0 +1,57 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block title %}Categorías{% endblock %}
+
+{% block body %}
+<br>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-primary">
+                <div class="panel panel-heading">Panel de Categorías</div>
+                &nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ path('admin_category_new') }}"
+                    class="btn btn-primary btn-sm">Nueva Categoría</a>
+                <div class="panel-body">
+                    {# {% include 'PostBundle:Includes:_messages.html.twig' %} #}
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+								<th>Id</th>
+								<th>Nombre</th>
+								<th>Posts</th>
+								<th>Editar</th>
+								<th>Borrar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for category in categories %}
+                            <tr>
+                                <td>{{category.id}}</td>
+                                <td>{{category.name}}</td>
+                                <td>
+                                    <span class="badge">{{category.posts|length}}</span>
+                                </td>
+                                <td>
+                                    <a href="{{path('admin_category_edit', {'id': category.id})}}" class="btn btn-success btn-sm">Editar</a>
+                                   
+                                </td>
+                                <td>
+                                    {{ include('admin/category/_delete_form.html.twig') }}
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="4">No hay registros en la Categoría</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer">© copyright: Xavier Casas Soria</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

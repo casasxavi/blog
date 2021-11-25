@@ -1,0 +1,54 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block title %}Etiquetas{% endblock %}
+
+{% block body %}
+<br>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-primary">
+                <div class="panel panel-heading">Panel de Etiquetas</div>
+                &nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ path('admin_tag_new') }}" class="btn btn-primary btn-sm">Nueva
+                    Etiqueta</a>
+                <div class="panel-body">
+                    {# {% include 'PostBundle:Includes:_messages.html.twig' %} #}
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+								<th>Posts</th>
+								<th>Editar</th>
+								<th>Borrar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for tag in tags %}
+                            <tr>
+                                <td>{{ tag.id }}</td>
+                                <td>{{ tag.name }}</td>
+                                <td><span class="badge">{{tag.posts|length}}</span></td>
+                                <td>
+                                    <a href="{{path('admin_tag_edit', {'id': tag.id})}}" class="btn btn-success btn-sm">Editar</a>
+                                </td>
+                                <td>
+                                    {{ include('admin/tag/_delete_form.html.twig') }}
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="3">no records found</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer">© copyright: Xavier Casas Soria</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

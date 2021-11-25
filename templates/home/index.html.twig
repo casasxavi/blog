@@ -1,0 +1,60 @@
+{% extends 'layout_front.html.twig' %}
+
+{% block title %}Post{% endblock %}
+
+{% block body %}
+
+<div class="main container">
+	<div class="row">
+		<div class="posts col-md-9">
+
+			<div class="miga-de-pan">
+				<ol class="breadcrumb">
+					<li><a href="{{path('home_page')}}">Inicio</a></li>
+				</ol>
+			</div>
+			{% for post in posts %}
+			<article class="post clearfix">
+				<a href="#" class="thumb pull-left">
+					<img class="img-thumbnail" src="{{ asset("uploads/brochures/"~post.path)}}">
+				</a>
+				<h2 class="post-title"> {{ post.title|capitalize }}
+				</h2>
+				<h5 class="post-subtitle">Categoría: <span>{{ post.category.name }}</span></h5>
+				<p>Tags:
+					{% for tag in post.tags %}
+					<span class="label label-warning"> {{ tag.name }}</span>
+					{% endfor %}
+				</p>
+				<p>
+					Comentarios: <span class="badge">{{post.comment|length}}</span>
+				</p>
+				<p><span class="post-date">
+						<span>Publicado por: <span class="post-author"> {{ post.user.email }}</span> el dia <span
+								class="post-author">{{ post.createdAt ? post.createdAt|date('d-m-Y') : '' }}</span> </p>
+				<p class="post-conten text-justify">{{ post.description|slice(0, 300) }}......</p>
+				<div class="content-buttons">
+					<a href="{{path('home_post_show', {'slug': post.slug})}}"
+						class="btn btn-sm btn-info pull-right">Leer más</a>
+				</div>
+				{% include "includes/_buttons.html.twig" %}
+			</article>
+			{% endfor %}
+			{% if app.user != null %}
+			<div class="content-buttons">
+				<a href="{{path('home_post_new')}}" class="btn btn-sm btn-primary pull-left">Añadir un Post</a>
+			</div>
+			{% endif %}
+
+			<div class="navigation">
+				<div class="text-center">
+					{{ knp_pagination_render(posts) }}
+				</div>
+			</div>
+
+		</div>
+		{% include 'includes/_sidebar.html.twig' %}
+	</div>
+</div>
+
+{% endblock %}

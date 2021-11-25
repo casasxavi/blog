@@ -1,0 +1,24 @@
+{{ form_start(form, {'method': 'POST', 'attr' : {'novalidate' : 'novalidate'}})}}
+
+							{{ form_errors(form) }}
+
+							<div>
+								{{ form_label(form.email) }}
+								<span class="text-danger">{{ form_errors(form.email) }}</span>
+								{{ form_widget(form.email) }}
+							</div>
+							<br>
+							
+							<div>
+								{{ form_label(form.roles) }}
+								<span class="text-danger">{{ form_errors(form.roles) }}</span>
+								{{ form_widget(form.roles) }}
+							</div>
+							<br>
+                            <br>
+                            
+							
+							<div>
+								{{ form_widget(form.Guardar) }}
+							</div>
+							{{form_end(form)}}

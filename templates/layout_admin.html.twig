@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Post{% endblock %}</title>
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('css/blog-home.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="#" />
+</head>
+
+<body>
+    {% block nav %}
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{path('home_page')}}">Inicio</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{path('admin_post_index')}}">Post</a></li>
+                    <li><a href="{{path('admin_user_index')}}">Usuarios</a></li>
+                    <li><a href="{{path('admin_category_index')}}">Categorías</a></li>
+                    <li><a href="{{path('admin_tag_index')}}">Etiquetas</a></li>
+                    <li><a href="{{path('admin_comment_index')}}">Comentarios</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <form action="#" method="post" class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" id="item" name="item" value="" class="form-control" placeholder="Buscar">
+                        </div>
+                        <button type="submit" class="btn btn-default">Buscar</button>
+                    </form>
+                    <li class="dropdown">
+                        {% if app.user != null %}
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">
+                            {{app.user.email}}
+                            {% endif%}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{path('app_logout')}}">Salir</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    {% endblock %}
+    <div id="content">
+        {% block body %}
+
+        {% endblock %}
+    </div>
+    {% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    {% endblock %}
+</body>
+
+</html>

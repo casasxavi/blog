@@ -1,0 +1,55 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block title %}Comentarios{% endblock %}
+
+{% block body %}
+<br>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-primary">
+                <div class="panel panel-heading">Panel de Comentarios</div>
+
+                <div class="panel-body">
+                    {# {% include 'PostBundle:Includes:_messages.html.twig' %} #}
+                    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Contenido</th>
+                <th>Usuario</th>
+                <th>Post</th>
+                <th>Editar</th>
+                <th>Borrar</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for comment in comments %}
+            <tr>
+                <td>{{ comment.id }}</td>
+                <td>{{ comment.content|slice(0, 15) }} ......</td>
+                <td>{{ comment.user }}</td>
+                <td><a href="{{path('home_post_show', {'slug': comment.post.slug})}}">Ver</a></td>
+                <td>
+                    <a href="{{path('admin_comment_edit', {'id': comment.id})}}" class="btn btn-success btn-sm">Editar</a>
+                </td>
+                <td>
+                    {{ include('admin/comment/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">No hay registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="panel-footer">© copyright: Xavier Casas Soria</div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

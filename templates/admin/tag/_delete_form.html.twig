@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('admin_tag_delete', {'id': tag.id}) }}" onsubmit="return confirm('Seguro que desea eliminar esta Etiqueta?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ tag.id) }}">
+    <button class="btn btn-danger btn-sm">Borrar</button>
+</form>

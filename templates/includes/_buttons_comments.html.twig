@@ -1,0 +1,15 @@
+<div>
+	{% if app.user != null %}
+		<div class="content-buttons">
+				{% if is_granted('ROLE_ADMIN') %}
+			<span><a href="#" class="btn btn-sm btn-danger pull-right">Borrar</a></span><span class="pull-right">&nbsp;&nbsp;</span>
+			<span><a href="#" class="btn btn-success btn-sm pull-right">Editar</a></span>			
+				{% else %}
+					{% if app.user.id == comment.user.id %}
+			<span><a href="#" class="btn btn-sm btn-danger pull-right">Borrar</a></span><span class="pull-right">&nbsp;&nbsp;</span>					
+			<span><a href="#" class="btn btn-success btn-sm pull-right">Editar</a></span>			
+				{% endif %}	
+			{% endif %}			
+		</div>
+	{% endif %}
+	<br

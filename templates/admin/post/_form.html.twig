@@ -1,0 +1,44 @@
+{{ form_start(form, {'action': path('home_post_new'), 'method': 'POST', 'attr' : {'novalidate' : 'novalidate'}})}}
+
+							{{ form_errors(form) }}
+
+							<div>
+								{{ form_label(form.title) }}
+								<span class="text-danger">{{ form_errors(form.title) }}</span>
+								{{ form_widget(form.title) }}
+							</div>
+							<br>
+							
+							<div>
+								{{ form_label(form.description) }}
+								<span class="text-danger">{{ form_errors(form.description) }}</span>
+								{{ form_widget(form.description) }}
+							</div>
+							<br>
+							
+							<div>
+								{{ form_label(form.path) }}
+								<span class="text-danger">{{ form_errors(form.path) }}</span>
+								{{ form_widget(form.path) }}
+							</div>
+							<br>
+							
+							<div>
+								{{ form_label(form.category) }}
+								<span class="text-danger">{{ form_errors(form.category) }}</span>
+								{{ form_widget(form.category) }}
+							</div>
+							<br>
+							<br>
+							
+							<div>
+								{{ form_label(form.tags) }}
+								<span class="text-danger">{{ form_errors(form.tags) }}</span>
+								{{ form_widget(form.tags) }}
+							</div>
+							<br>
+							
+							<div>
+								{{ form_widget(form.Guardar) }}
+							</div>
+							{{form_end(form)}}

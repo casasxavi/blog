@@ -1,0 +1,36 @@
+{% extends 'layout_front.html.twig' %}
+
+{% block body %}
+
+	<div class="main container">
+		<div class="row">
+			<div class="posts col-md-9">
+				<div class="miga-de-pan">
+					<ol class="breadcrumb">
+						<li><a href="{{path('home_page')}}">Inicio</a></li>
+						<li>Artículos</li>
+						<li>Categorías</li>
+					</ol>
+				</div>
+				<article class="post clearfix"> 
+					<div class="count">
+						 <h4>coincidencias encontradas: <strong>{{ posts.getTotalItemCount }}</strong></h4>
+					</div>
+					<br>
+				{% for post in posts %}
+					<h5 class="post-title"><a href="{{path('home_post_show', { "slug": post.slug })}}">{{ post.title }}</a>					
+					</h5>		
+					<p class="post-conten text-justify">{{ post.description|slice(0, 200) }}......</p>
+					<br>								
+				{% endfor %}
+			</article>
+			</div>
+			{% include 'includes/_sidebar.html.twig' %}
+		</div>
+		<div class="navigation">
+			{{ knp_pagination_render(posts) }}
+		</div>
+		
+	</div>
+
+{% endblock %}

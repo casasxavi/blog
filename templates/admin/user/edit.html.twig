@@ -1,0 +1,25 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel panel-heading">Editar un Usuarios:</div>
+                <div class="panel-body">
+                    <div class="col-md-8 col-md-offset-2">
+
+                        {{ include('admin/user/_form.html.twig', {'button_label': 'Update'}) }}
+
+                    </div>
+                </div>
+                <div class="panel-footer">© copyright: Xavier Casas Soria</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

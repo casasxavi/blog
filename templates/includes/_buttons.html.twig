@@ -1,0 +1,16 @@
+<div>
+	{% if app.user != null %}
+		<div class="content-buttons">
+				{% if is_granted('ROLE_ADMIN') %}
+			<span><a href="#" class="btn btn-success btn-sm">Editar</a></span><span>&nbsp;&nbsp;</span>
+			<span><a href="#" class="btn btn-sm btn-danger">Borrar</a></span>
+				{% else %}
+					{% if app.user.id == post.user.id %}					
+			<span><a href="#" class="btn btn-success btn-sm">Editar</a></span><span class="pull-right">&nbsp;&nbsp;</span>
+			<span><a href="#" class="btn btn-sm btn-danger">Borrar</a></span>
+				{% endif %}	
+			{% endif %}			
+		</div>
+	{% endif %}
+	<br><br>
+</div>

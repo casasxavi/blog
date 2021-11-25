@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Post{% endblock %}</title>
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('css/blog-home.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="#" />
+</head>
+
+<body>
+    {% block nav %}
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{path('home_page')}}">Post</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    {% if app.user == null %}
+                    <!-- si no hay un usuario autenticado -->
+                    <li><a href="{{path('app_login')}}">Iniciar Sesión</a></li>
+                    <li><a href="{{path('app_register')}}">Regístrate</a></li>
+                    {% else %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <!-- si es Administrador -->
+                    <li><a href="{{path('admin_post_index')}}">Administrador</a></li>
+                    {% else %}
+                    <!-- en caso contrario usuario -->
+                    <li><a href="#">Perfil</a></li>
+                    <li><a href="{{path('home_post_new')}}">Añadir Post</a></li>
+                    {% endif %}
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <form action="{{path('front_search')}}" method="post" class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" id="item" name="item" value="" class="form-control" placeholder="Buscar">
+                        </div>
+                        <button type="submit" class="btn btn-default">Buscar</button>
+                    </form>
+                    <li class="dropdown">
+                        {% if app.user != null %}
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">
+                            {{app.user.email}}
+                            {% endif%}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{path('app_logout')}}">Salir</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    {% endblock %}
+    <div id="content">
+        {% block body %}
+
+        {% endblock %}
+    </div>
+    {% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js"></script>
+    {% endblock %}
+</body>
+
+</html>
