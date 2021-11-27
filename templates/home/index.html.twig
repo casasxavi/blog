@@ -30,7 +30,7 @@
 					Comentarios: <span class="badge">{{post.comment|length}}</span>
 				</p>
 				<p><span class="post-date">
-						<span>Publicado por: <span class="post-author"> {{ post.user.email }}</span> el dia <span
+						<span>Publicado por: <span class="post-author"> {{ post.user.email }}</span> en fecha <span
 								class="post-author">{{ post.createdAt ? post.createdAt|date('d-m-Y') : '' }}</span> </p>
 				<p class="post-conten text-justify">{{ post.description|slice(0, 300) }}......</p>
 				<div class="content-buttons">
