@@ -29,7 +29,7 @@
                             <tr>
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                                <td><span class="badge">{{user.posts|length}}</span></td>
+                                <td><a href="{{ path('admin_user_post', {'id': user.id})}}" class="btn btn-success btn-sm">{{user.posts|length}}</a></td>                           
                                 <td><span class="badge">{{user.comments|length}}</span></td>
                                 <td>
                                     <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-success btn-sm">Editar</a>

@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Post;
+use App\Entity\User;
 use App\Form\PostType;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,6 +25,22 @@ class PostController extends AbstractController
             'posts' => $postRepository->findAll(),
         ]);
     }
+
+
+/**
+ * @Route("/{id}", name="admin_user_post")
+ */
+public function postUser(Request $request, $id)
+{
+
+    $query = $this->getDoctrine()->getRepository(Post::class)->findBy(['user' => $id], array('id' => 'DESC'));
+
+
+    return $this->render('admin/post/postUser.html.twig', [
+        'posts' => $query,
+    ]);
+    
+}
 
     /**
      * @Route("/new", name="admin_post_new", methods={"GET","POST"})

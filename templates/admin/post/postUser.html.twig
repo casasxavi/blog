@@ -1,0 +1,66 @@
+{% extends 'layout_admin.html.twig' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block body %}
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-primary">
+                <div class="panel panel-heading">Panel de Posts</div>
+                <div class="panel-body">
+                    {# {% include 'PostBundle:Includes:_messages.html.twig' %} #}
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Autor</th>
+                                <th>Título</th>
+                                <th>Descripción</th>
+                                <th>Imagen</th>
+                                <th>Categoría</th>
+                                <th>Tags</th>
+                                <th>Comentarios</th>
+                                <th>Editar</th>
+                                <th>Borrar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for post in posts %}
+                            <tr>
+                                <td><a href="{{path('home_post_show', {'slug': post.slug})}}">{{ post.id }}</a></td>
+                                <td>{{ post.user.email }}</td>
+                                <td>{{ post.title }}</td>
+                                <td>{{ post.description|slice(0, 15) }}.....</td>
+                                <td><img width="50" class="img-thumbnail"
+                                        src="{{ asset("uploads/brochures/"~post.path)}}"></td>
+                                <td>{{ post.category.name }}</td>
+                                <td>    
+                                    <span class="badge">{{post.tags|length}}</span>
+                                </td>
+                                <td>
+                                    <span class="badge">{{post.comment|length}}</span>
+                                </td>
+                                <td>
+                                    <a href="{{ path('admin_post_edit', {'id': post.id}) }}" class="btn btn-success btn-sm">Editar</a>
+                                </td>
+                                <td>
+                                    {{ include('admin/post/_delete_form.html.twig') }}
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="8">no hay registros para mostrar</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer">© copyright: Xavier Casas Soria</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
